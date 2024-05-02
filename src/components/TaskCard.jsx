@@ -1,0 +1,40 @@
+import React from "react";
+
+import "./TaskCard.css";
+import Tag from "./Tag";
+import deleteIcon from "../assets/delete.png";
+
+const TaskCard = ({ title,desc, tags, handleDelete, index, setActiveCard }) => {
+    return (
+        <article className='task_card' draggable onDragStart={() => setActiveCard(index)} onDragEnd={()=> setActiveCard(null)}>
+          <div className="row">
+            <div className="col">
+                <h4>{title}</h4>
+             
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+                <h6>{desc}</h6>
+            
+            </div>
+          </div>
+            
+
+            <div className='task_card_bottom_line'>
+                <div className='task_card_tags'>
+                    {tags.map((tag, index) => (
+                        <Tag key={index} tagName={tag} selected />
+                    ))}
+                </div>
+                <div
+                    className='task_delete'
+                    onClick={() => handleDelete(index)}>
+                    <img src={deleteIcon} className='delete_icon' alt='' />
+                </div>
+            </div>
+        </article>
+    );
+};
+
+export default TaskCard;
